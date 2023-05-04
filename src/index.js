@@ -1,7 +1,6 @@
 const express = require('express');
 const app = express();
 const router = require('./routes/index');
-const userService = require('./services/UserService');
 const bodyParser = require('body-parser');
 const dotenv = require('dotenv')
 
