@@ -10,7 +10,7 @@ app.use(bodyParser.json());
 app.use(router)
 
 // PORT 
-const port = process.env.APP_PORT || 3300;
+const port = process.env.APP_PORT || 3030;
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 
