@@ -3,20 +3,20 @@ const TeacherService = require('../services/TeacherService');
 class TeacherController {
   
   async getAllTeachers(req, res) {
-      try {
-          const users = await TeacherService.getAllTeachers();
-          res.json(users);
-      } catch (err) {
-          console.error(err);
-          res.status(500).send('Internal Server Error - controller');
-      }
+    try {
+      const teachers = await TeacherService.getAllTeachers();
+      res.json(teachers);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error - GET ALL TEACHERS controller');
+    }
   }
 
   async getTeacherById(req, res) {
       try {
         const id = req.params.id;
-        const user = await TeacherService.getTeacherById(id);
-        res.json(user);
+        const teachers = await TeacherService.getTeacherById(id);
+        res.json(teachers);
       } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error - controller');

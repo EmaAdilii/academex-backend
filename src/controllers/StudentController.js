@@ -12,6 +12,8 @@ class StudentController {
       }
   }
 
+  
+
   async getStudentById(req, res) {
       try {
         const id = req.params.id;

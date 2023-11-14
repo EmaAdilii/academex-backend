@@ -1,30 +1,25 @@
-const CourseDao = require('../daos/CourseDao');
+const CourseCrud = require('../cruds/courseCrud');
 
-class CategoryService { 
-    async getAllCourses() {
-        return await CourseDao.getAllCourses();
-    }
+class CourseService {
+  async getAllCourses() {
+    return await CourseCrud.getAllCourses();
+  }
 
-    async getCourseById(id) {
-      return await CourseDao.getCourseById(id);
-    }
-  
-    async createCourse(categoryData) {
-      return await CourseDao.createCourse(categoryData);
-    }
+  async getCourseById(id) {
+    return await CourseCrud.getCourseById(id);
+  }
 
-    async updateCourse(updateCategoryData) {
-      return await CourseDao.updateCourse(updateCategoryData);
-    }
+  async createCourse(courseData) {
+    return await CourseCrud.createCourse(courseData);
+  }
 
-    async deleteCourse(id) {
-      const result = await CourseDao.deleteCourse(id);
-      if(result.affectedRows === 0) {
-        return 'Category not found';
-      } else if(result.affectedRows === 1){
-        return 'Category deleted successfully!';
-      }
-    }
+  async updateCourse(updateCourseData) {
+    return await CourseCrud.updateCourse(updateCourseData);
+  }
+
+  async deleteCourse(id) {
+    return await CourseCrud.deleteCourse(id);
+  }
 }
-  
-module.exports = new CategoryService();
+
+module.exports = new CourseService();

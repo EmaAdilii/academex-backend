@@ -4,8 +4,8 @@ class CategoryController {
   
   async getAllCategories(req, res) {
       try {
-          const users = await CategoryService.getAllCategories();
-          res.json(users);
+          const category = await CategoryService.getAllCategories();
+          res.json(category);
       } catch (err) {
           console.error(err);
           res.status(500).send('Internal Server Error - controller');
@@ -15,8 +15,8 @@ class CategoryController {
   async getCategoryById(req, res) {
       try {
         const id = req.params.id;
-        const user = await CategoryService.getCategoryById(id);
-        res.json(user);
+        const category = await CategoryService.getCategoryById(id);
+        res.json(category);
       } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error - controller');

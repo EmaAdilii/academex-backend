@@ -3,14 +3,14 @@ const check = expressValidator.check;
 
 const createCourseValidator = () => {
     return [
-        check('name')
+        check('title')
         .trim()
         .not()
         .isEmpty()
-        .withMessage('Please provide a name'),
-    check('name')
-        .isLength({ max: 15 })
-        .withMessage('Name should be max 15 characters'),
+        .withMessage('Please provide a title'),
+    check('title')
+        .isLength({ max: 60 })
+        .withMessage('Title should be max 60 characters'),
 
     check('description')
         .trim()
@@ -44,14 +44,14 @@ const updateCourseValidator = () => {
         .not()
         .isEmpty()
         .withMessage('Please provide a course Id'),
-    check('name')
+    check('title')
         .trim()
         .not()
         .isEmpty()
-        .withMessage('Please provide a name'),
-    check('name')
-        .isLength({ max: 15 })
-        .withMessage('Name should be max 15 characters'),
+        .withMessage('Please provide a title'),
+    check('title')
+        .isLength({ max: 60 })
+        .withMessage('Title should be max 60 characters'),
 
     check('description')
         .trim()

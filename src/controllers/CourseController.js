@@ -4,19 +4,19 @@ class CourseController {
   
   async getAllCourses(req, res) {
       try {
-          const users = await CourseService.getAllCourses();
-          res.json(users);
+          const course = await CourseService.getAllCourses();
+          res.json(course);
       } catch (err) {
           console.error(err);
-          res.status(500).send('Internal Server Error - controller');
+          res.status(500).send('Internal Server Error - GET ALL COURSES controller');
       }
   }
 
   async getCourseById(req, res) {
       try {
         const id = req.params.id;
-        const user = await CourseService.getCourseById(id);
-        res.json(user);
+        const course = await CourseService.getCourseById(id);
+        res.json(course);
       } catch (err) {
         console.error(err);
         res.status(500).send('Internal Server Error - controller');

@@ -29,14 +29,14 @@ const createStudentValidator = () => {
         .isLength({ max: 25 })
         .withMessage('Email should be max 15 characters'),
 
-    check('username')
-        .trim()
-        .not()
-        .isEmpty()
-        .withMessage('Please provide a username'),
-    check('username')
-        .isLength({ max: 15 })
-        .withMessage('Username should be max 15 characters'),
+    // check('username')
+    //     .trim()
+    //     .not()
+    //     .isEmpty()
+    //     .withMessage('Please provide a username'),
+    // check('username')
+    //     .isLength({ max: 15 })
+    //     .withMessage('Username should be max 15 characters'),
 
     check('password')
         .trim()
@@ -62,14 +62,14 @@ const createStudentValidator = () => {
         .isLength({ max: 15 })
         .withMessage('City should be max 15 characters'),
 
-    check('address')
-        .trim()
-        .not()
-        .isEmpty()
-        .withMessage('Please provide an address'),
-    check('address')
-        .isLength({ max: 50 })
-        .withMessage('Address should be max 50 characters')
+    // check('address')
+    //     .trim()
+    //     .not()
+    //     .isEmpty()
+    //     .withMessage('Please provide an address'),
+    // check('address')
+    //     .isLength({ max: 50 })
+    //     .withMessage('Address should be max 50 characters')
 
     ]
 }
@@ -110,14 +110,14 @@ const updateStudentValidator = () => {
         .isLength({ max: 25 })
         .withMessage('Email should be max 15 characters'),
 
-    check('username')
-        .trim()
-        .not()
-        .isEmpty()
-        .withMessage('Please provide a username'),
-    check('username')
-        .isLength({ max: 15 })
-        .withMessage('Username should be max 15 characters'),
+    // check('username')
+    //     .trim()
+    //     .not()
+    //     .isEmpty()
+    //     .withMessage('Please provide a username'),
+    // check('username')
+    //     .isLength({ max: 15 })
+    //     .withMessage('Username should be max 15 characters'),
 
     check('password')
         .trim()
@@ -143,14 +143,14 @@ const updateStudentValidator = () => {
         .isLength({ max: 15 })
         .withMessage('City should be max 15 characters'),
 
-    check('address')
-        .trim()
-        .not()
-        .isEmpty()
-        .withMessage('Please provide an address'),
-    check('address')
-        .isLength({ max: 50 })
-        .withMessage('Address should be max 50 characters')
+    // check('address')
+    //     .trim()
+    //     .not()
+    //     .isEmpty()
+    //     .withMessage('Please provide an address'),
+    // check('address')
+    //     .isLength({ max: 50 })
+    //     .withMessage('Address should be max 50 characters')
 
     ]
 }

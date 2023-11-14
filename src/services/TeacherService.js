@@ -1,24 +1,24 @@
-const TeacherDao = require('../daos/TeacherDao');
+const TeacherCrud = require('../cruds/teacherCrud');
 
 class TeacherService { 
     async getAllTeachers() {
-        return await TeacherDao.getAllTeachers();
+        return await TeacherCrud.getAllTeachers();
     }
 
     async getTeacherById(id) {
-      return await TeacherDao.getTeacherById(id);
+      return await TeacherCrud.getTeacherById(id);
     }
   
     async createTeacher(teacherData) {
-      return await TeacherDao.createTeacher(teacherData);
+      return await TeacherCrud.createTeacher(teacherData);
     }
 
     async updateTeacher(updateTeacherData) {
-      return await TeacherDao.updateTeacher(updateTeacherData);
+      return await TeacherCrud.updateTeacher(updateTeacherData);
     }
 
     async deleteTeacher(id) {
-      const result = await TeacherDao.deleteTeacher(id);
+      const result = await TeacherCrud.deleteTeacher(id);
       if(result.affectedRows === 0) {
         return 'Teacher not found';
       } else if(result.affectedRows === 1){

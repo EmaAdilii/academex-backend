@@ -1,6 +1,8 @@
 const expressValidator = require('express-validator')
 const check = expressValidator.check;
 
+//CHECK AGAIN EDHE HEKI USERNAME EDHE ADDRESS
+
 const createTeacherValidator = () => {
     return [
         check('name')
@@ -25,7 +27,7 @@ const createTeacherValidator = () => {
         .trim()
         .not()
         .isEmpty()
-        .withMessage('Please provide an eamil'),
+        .withMessage('Please provide an email'),
     check('email')
         .isLength({ max: 25 })
         .withMessage('Email should be max 15 characters'),
