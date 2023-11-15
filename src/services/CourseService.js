@@ -1,24 +1,57 @@
-const CourseCrud = require('../cruds/courseCrud');
+const Course = require('../models/courseModel');
 
 class CourseService {
   async getAllCourses() {
-    return await CourseCrud.getAllCourses();
+    return await Course.findAll({
+      // include: ['teacher', 'category'],
+    });
   }
 
   async getCourseById(id) {
-    return await CourseCrud.getCourseById(id);
+    return await Course.findByPk(id, {
+      // include: ['teacher', 'category'],
+    });
   }
 
   async createCourse(courseData) {
-    return await CourseCrud.createCourse(courseData);
+    try {
+      const newCourse = await Course.create(courseData);
+      return newCourse;
+    } catch (error) {
+      console.error('Error creating course:', error);
+      throw error;
+    }
   }
 
   async updateCourse(updateCourseData) {
-    return await CourseCrud.updateCourse(updateCourseData);
+    try {
+      const course = await Course.findByPk(updateCourseData.courseId);
+      if (!course) {
+        return 'Course not found';
+      }
+
+      await course.update(updateCourseData);
+
+      return course;
+    } catch (error) {
+      console.error('Error updating course:', error);
+      throw error;
+    }
   }
 
   async deleteCourse(id) {
-    return await CourseCrud.deleteCourse(id);
+    try {
+      const course = await Course.findByPk(id);
+      if (!course) {
+        return 'Course not found';
+      }
+
+      await course.destroy();
+      return 'Course deleted successfully!';
+    } catch (error) {
+      console.error('Error deleting course:', error);
+      throw error;
+    }
   }
 }
 

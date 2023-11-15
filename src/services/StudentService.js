@@ -1,30 +1,54 @@
-const StudentCrud = require('../cruds/studentCrud');
+const Student = require('../models/studentModel');
 
 class StudentService { 
-    async getAllStudents() {
-        return await StudentCrud.getAllStudents();
-    }
+  async getAllStudents() {
+    return await Student.findAll();
+  }
 
-    async getStudentById(id) {
-      return await StudentCrud.getStudentById(id);
-    }
-  
-    async createStudent(studentData) {
-      return await StudentCrud.createStudent(studentData);
-    }
+  async getStudentById(id) {
+    return await Student.findByPk(id);
+  }
 
-    async updateStudent(updateStudentData) {
-      return await StudentCrud.updateStudent(updateStudentData);
+  async createStudent(studentData) {
+    try {
+      const newStudent = await Student.create(studentData);
+      return newStudent;
+    } catch (error) {
+      console.error('Error creating student:', error);
+      throw error;
     }
+  }
 
-    async deleteStudent(id) {
-      const result = await StudentCrud.deleteStudent(id);
-      if(result.affectedRows === 0) {
+  async updateStudent(updateStudentData) {
+    try {
+      const student = await Student.findByPk(updateStudentData.id);
+      if (!student) {
         return 'Student not found';
-      } else if(result.affectedRows === 1){
-        return 'Student deleted successfully!';
       }
+  
+      await student.update(updateStudentData);
+  
+      return student;
+    } catch (error) {
+      console.error('Error updating student:', error);
+      throw error;
     }
+  }
+  
+  async deleteStudent(id) {
+    try {
+      const student = await Student.findByPk(id);
+      if (!student) {
+        return 'Student not found';
+      }
+
+      await student.destroy();
+      return 'Student deleted successfully!';
+    } catch (error) {
+      console.error('Error deleting student:', error);
+      throw error;
+    }
+  }
 }
   
 module.exports = new StudentService();
