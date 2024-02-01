@@ -5,12 +5,16 @@ const TeacherController = require('../controllers/TeacherController');
 const CategoryController = require('../controllers/CategoryController');
 const CourseController = require('../controllers/CourseController');
 const Controller = require('../controllers/Controller');
+const NewsController = require('../controllers/NewsController'); 
+
 
 const validate = require('../validators/validator');
 const studentValidator = require('../validators/studentValidator');
 const teacherValidator = require('../validators/teacherValidator');
 const categoryValidator = require('../validators/categoryValidator');
 const courseValidator = require('../validators/courseValidator');
+const { createNewsValidator, updateNewsValidator } = require('../validators/newsValidator'); 
+
 
 const createStudentValidator = studentValidator.createStudentValidator;
 const updateStudentValidator = studentValidator.updateStudentValidator;
@@ -55,6 +59,13 @@ router.get('/courses/:id', CourseController.getCourseById);
 router.post('/courses/create', createCourseValidator(), validate, CourseController.createCourse);
 router.patch('/courses/update', updateCourseValidator(), validate, CourseController.updateCourse);
 router.delete('/courses/delete/:id', CourseController.deleteCourse);
+
+// News routes
+router.get('/news', NewsController.getAllNews);
+router.get('/news/:id', NewsController.getNewsById);
+router.post('/news/create', createNewsValidator(), validate, NewsController.createNews);
+router.patch('/news/update', updateNewsValidator(), validate, NewsController.updateNews);
+router.delete('/news/delete/:id', NewsController.deleteNews);
 
 
 module.exports = router;

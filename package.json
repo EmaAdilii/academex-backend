@@ -20,7 +20,7 @@
     "mariadb": "^3.2.2",
     "morgan": "^1.10.0",
     "mysql": "^2.18.1",
-    "mysql2": "^3.6.3",
+    "mysql2": "^3.9.1",
     "nodemon": "^2.0.22",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.34.0",

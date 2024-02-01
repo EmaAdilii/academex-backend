@@ -5,6 +5,8 @@ const bodyParser = require('body-parser');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const morgan = require("morgan");
+const testDatabaseConnection = require('./database/testConnection')
+
 
 
 // setting middleware
@@ -26,3 +28,6 @@ app.use(router);
 // PORT
 const port = process.env.APP_PORT || 3030;
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+testDatabaseConnection();
+
