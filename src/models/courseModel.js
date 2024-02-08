@@ -43,6 +43,7 @@ Course.init(
   }
 );
 
+
 // Define associations with custom foreign keys
 Course.belongsTo(Teacher, {
     foreignKey: 'teacher_id',
