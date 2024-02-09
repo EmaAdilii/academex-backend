@@ -16,17 +16,16 @@ Book.init(
       allowNull: false,
     },
     image: {
-        type: DataTypes.STRING,
-        allowNull: true,
-      },
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     author: {
       type: DataTypes.STRING,
       allowNull: false,
     },
-    createdAt: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
+    link: {
+      type: DataTypes.STRING, 
+      allowNull: true, 
     },
   },
   {

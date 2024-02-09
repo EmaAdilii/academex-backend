@@ -6,7 +6,7 @@ const CategoryController = require('../controllers/CategoryController');
 const CourseController = require('../controllers/CourseController');
 const Controller = require('../controllers/Controller');
 const NewsController = require('../controllers/NewsController'); 
-
+const BookController = require('../controllers/BookController')
 
 const validate = require('../validators/validator');
 const studentValidator = require('../validators/studentValidator');
@@ -14,6 +14,7 @@ const teacherValidator = require('../validators/teacherValidator');
 const categoryValidator = require('../validators/categoryValidator');
 const courseValidator = require('../validators/courseValidator');
 const { createNewsValidator, updateNewsValidator } = require('../validators/newsValidator'); 
+const { createBookValidator, updateBookValidator } = require('../validators/bookValidator');
 
 
 const createStudentValidator = studentValidator.createStudentValidator;
@@ -67,5 +68,14 @@ router.post('/news/create', createNewsValidator(), validate, NewsController.crea
 router.patch('/news/update', updateNewsValidator(), validate, NewsController.updateNews);
 router.delete('/news/delete/:id', NewsController.deleteNews);
 
+// Book routes
+router.get('/books', BookController.getAllBooks);
+router.get('/books/:id', BookController.getBookById);
+router.post('/books/create', createBookValidator(), validate, BookController.createBook);
+router.patch('/books/update', updateBookValidator(), validate, BookController.updateBook);
+router.delete('/books/delete/:id', BookController.deleteBook);
+
 
 module.exports = router;
+
+
