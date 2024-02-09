@@ -15,13 +15,13 @@ Book.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    image: {
+        type: DataTypes.STRING,
+        allowNull: true,
+      },
     author: {
       type: DataTypes.STRING,
       allowNull: false,
-    },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: true,
     },
     createdAt: {
       type: DataTypes.DATE,
