@@ -1,43 +1,28 @@
 const express = require('express');
 const router = express.Router();
-const StudentController = require('../controllers/StudentController');
+const UserController = require('../controllers/UserController');
 const TeacherController = require('../controllers/TeacherController');
 const CategoryController = require('../controllers/CategoryController');
 const CourseController = require('../controllers/CourseController');
 const Controller = require('../controllers/Controller');
 const NewsController = require('../controllers/NewsController'); 
 
-
 const validate = require('../validators/validator');
-const studentValidator = require('../validators/studentValidator');
-const teacherValidator = require('../validators/teacherValidator');
-const categoryValidator = require('../validators/categoryValidator');
-const courseValidator = require('../validators/courseValidator');
-const { createNewsValidator, updateNewsValidator } = require('../validators/newsValidator'); 
-
-
-const createStudentValidator = studentValidator.createStudentValidator;
-const updateStudentValidator = studentValidator.updateStudentValidator;
-const createTeacherValidator = teacherValidator.createTeacherValidator;
-const updateTeacherValidator = teacherValidator.updateTeacherValidator;
-const createCategoryValidator = categoryValidator.createCategoryValidator;
-const updateCategoryValidator = categoryValidator.updateCategoryValidator;
-const createCourseValidator = courseValidator.createCourseValidator;
-const updateCourseValidator = courseValidator.updateCourseValidator;
-
-// router.get('/', (req, res) => {
-//     res.send('Welcome to Academex!');
-// });
+const {createUserValidator, updateUserValidator} = require('../validators/userValidator');
+const { createTeacherValidator, updateTeacherValidator} = require('../validators/teacherValidator');
+const {createCategoryValidator, updateCategoryValidator} = require('../validators/categoryValidator');
+const {createCourseValidator, updateCourseValidator} = require('../validators/courseValidator');
+const {createNewsValidator, updateNewsValidator} = require('../validators/newsValidator');
 
 //All data route
 router.get('/allData', Controller.getAllData);
 
-//Student routes
-router.get('/students', StudentController.getAllStudents);
-router.get('/students/:id', StudentController.getStudentById);
-router.post('/students/create', createStudentValidator(), validate, StudentController.createStudent);
-router.patch('/students/update', updateStudentValidator(), validate, StudentController.updateStudent);
-router.delete('/students/delete/:id', StudentController.deleteStudent);
+//User routes
+router.get('/users', UserController.getAllUsers);
+router.get('/users/:id', UserController.getUserById);
+router.post('/users/create', createUserValidator(), validate, UserController.createUser);
+router.patch('/users/update', updateUserValidator(), validate, UserController.updateUser);
+router.delete('/users/delete/:id', UserController.deleteUser);
 
 //Teacher routes
 router.get('/teachers', TeacherController.getAllTeachers);
@@ -66,6 +51,5 @@ router.get('/news/:id', NewsController.getNewsById);
 router.post('/news/create', createNewsValidator(), validate, NewsController.createNews);
 router.patch('/news/update', updateNewsValidator(), validate, NewsController.updateNews);
 router.delete('/news/delete/:id', NewsController.deleteNews);
-
 
 module.exports = router;

@@ -1,10 +1,10 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../database/db-connection'); 
 
-class Student extends Model {
+class User extends Model {
     
 }
-Student.init(
+User.init(
     {
     id: {
         type: DataTypes.INTEGER,
@@ -35,19 +35,16 @@ Student.init(
             len: [8, 255], // Enforce a minimum password length
         },
     },
-    birthday: {
-        type: DataTypes.DATEONLY,
-        allowNull: true,
-    },
-    city: {
-        type: DataTypes.STRING,
-        allowNull: true,
+    role: {
+        type: DataTypes.ENUM('user', 'admin'), // Adding role field as ENUM type
+        allowNull: false,
+        defaultValue: 'user', // Default role is user
     },
 }, {
     sequelize,
-    modelName: 'Student',
-    tableName: 'students',
+    modelName: 'User',
+    tableName: 'users',
     timestamps: false,
 });
 
-module.exports = Student;
+module.exports = User;

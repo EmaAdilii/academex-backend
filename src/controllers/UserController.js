@@ -1,10 +1,10 @@
-const StudentService = require('../services/StudentService');
+const UserService = require('../services/UserService');
 
-class StudentController {
+class UserController {
   
-  async getAllStudents(req, res) {
+  async getAllUsers(req, res) {
       try {
-          const users = await StudentService.getAllStudents();
+          const users = await UserService.getAllUsers();
           res.json(users);
       } catch (err) {
           console.error(err);
@@ -12,12 +12,10 @@ class StudentController {
       }
   }
 
-  
-
-  async getStudentById(req, res) {
+  async getUserById(req, res) {
       try {
         const id = req.params.id;
-        const user = await StudentService.getStudentById(id);
+        const user = await UserService.getUserById(id);
         res.json(user);
       } catch (err) {
         console.error(err);
@@ -25,9 +23,9 @@ class StudentController {
       }
     }
 
-  async createStudent(req, res) {
+  async createUser(req, res) {
     try {
-      const result = await StudentService.createStudent(req.body);
+      const result = await UserService.createUser(req.body);
       res.json(result);
     } catch (err) {
       console.error(err);
@@ -35,9 +33,9 @@ class StudentController {
     }
   }
 
-  async updateStudent(req, res) {
+  async updateUser(req, res) {
     try {
-      const result = await StudentService.updateStudent(req.body);
+      const result = await UserService.updateUser(req.body);
       res.json(result);
     } catch (err) {
       console.error(err);
@@ -45,10 +43,10 @@ class StudentController {
     }
   }
 
-  async deleteStudent(req, res) {
+  async deleteUser(req, res) {
     try{
       const id = req.params.id;
-      const result = await StudentService.deleteStudent(id);
+      const result = await UserService.deleteUser(id);
       res.json(result);
     }catch (err) {
       console.error(err);
@@ -57,4 +55,4 @@ class StudentController {
   }
 }
 
-module.exports = new StudentController();
+module.exports = new UserController();

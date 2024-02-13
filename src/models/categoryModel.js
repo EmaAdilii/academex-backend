@@ -10,11 +10,7 @@ Category.init({
         autoIncrement: true,
         allowNull: false
     },
-    cover: {
-        type: DataTypes.STRING, 
-        allowNull: true 
-    },
-    title: {
+    name: {
         type: DataTypes.STRING,
         allowNull: false
     }}, 
