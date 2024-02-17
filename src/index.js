@@ -26,7 +26,7 @@ app.use(router);
 // Define your API routes in the router file (routes/index.js) and use them here.
 
 // PORT
-const port = process.env.APP_PORT || 3030;
+const port = process.env.APP_PORT || 3000;
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
 testDatabaseConnection();
