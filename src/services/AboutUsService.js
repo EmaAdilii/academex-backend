@@ -1,17 +1,18 @@
-const AboutUs = require('../models/aboutUsModel'); // Adjust the path as necessary
+const AboutUsModel = require('./AboutUsService'); // Adjust the path as necessary
 
-class AboutUsService {
+
+class AboutusService {
   async getAllSections() {
-    return await AboutUs.findAll();
+    return await AboutUsModel.findAll();
   }
 
   async getSectionById(id) {
-    return await AboutUs.findByPk(id);
+    return await AboutUsModel.findByPk(id);
   }
 
   async createSection(sectionData) {
     try {
-      const newSection = await AboutUs.create(sectionData);
+      const newSection = await AboutUsModel.create(sectionData);
       return newSection;
     } catch (error) {
       console.error('Error creating section:', error);
@@ -21,7 +22,7 @@ class AboutUsService {
 
   async updateSection(updateSectionData) {
     try {
-      const section = await AboutUs.findByPk(updateSectionData.id);
+      const section = await AboutUsModel.findByPk(updateSectionData.id);
       if (!section) {
         return 'Section not found';
       }
@@ -34,9 +35,9 @@ class AboutUsService {
     }
   }
 
-   async deleteSection(id) {
+  async deleteSection(id) {
     try {
-      const section = await AboutSection.findByPk(id);
+      const section = await AboutUsModel.findByPk(id);
       if (!section) {
         return 'Section not found';
       }
@@ -50,4 +51,4 @@ class AboutUsService {
   }
 }
 
-module.exports = new AboutUsService();
+module.exports = new AboutusService();

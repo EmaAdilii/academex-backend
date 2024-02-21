@@ -9,6 +9,7 @@ const NewsController = require('../controllers/NewsController');
 const BookController = require('../controllers/BookController')
 const AboutUsController = require('../controllers/AboutUsController');
 
+
 const validate = require('../validators/validator');
 const studentValidator = require('../validators/studentValidator');
 const teacherValidator = require('../validators/teacherValidator');
@@ -16,6 +17,8 @@ const categoryValidator = require('../validators/categoryValidator');
 const courseValidator = require('../validators/courseValidator');
 const { createNewsValidator, updateNewsValidator } = require('../validators/newsValidator'); 
 const { createBookValidator, updateBookValidator } = require('../validators/bookValidator');
+const { createAboutUsValidator, updateAboutUsValidator } = require('../validators/aboutUsValidator');
+
 
 
 const createStudentValidator = studentValidator.createStudentValidator;

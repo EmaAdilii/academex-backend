@@ -1,5 +1,6 @@
 const AboutUsService = require('../services/AboutUsService');
 
+
 class AboutUsController {
 
   async getAllAboutUsEntries(req, res) {
