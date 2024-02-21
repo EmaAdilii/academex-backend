@@ -7,6 +7,7 @@ const CourseController = require('../controllers/CourseController');
 const Controller = require('../controllers/Controller');
 const NewsController = require('../controllers/NewsController'); 
 const BookController = require('../controllers/BookController')
+const AboutUsController = require('../controllers/AboutUsController');
 
 const validate = require('../validators/validator');
 const studentValidator = require('../validators/studentValidator');
@@ -75,6 +76,12 @@ router.post('/books/create', createBookValidator(), validate, BookController.cre
 router.patch('/books/update', updateBookValidator(), validate, BookController.updateBook);
 router.delete('/books/delete/:id', BookController.deleteBook);
 
+// AboutUs routes
+router.get('/aboutUs', AboutUsController.getAllAboutUsEntries);
+router.get('/aboutUs/:id', AboutUsController.getAboutUsEntryById);
+router.post('/aboutUs/create', createAboutUsValidator(), validate, AboutUsController.createAboutUsEntry);
+router.patch('/aboutUs/update', updateAboutUsValidator(), validate, AboutUsController.updateAboutUsEntry);
+router.delete('/aboutUs/delete/:id', AboutUsController.deleteAboutUsEntry);
 
 module.exports = router;
 
