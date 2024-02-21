@@ -3,25 +3,25 @@ const UserService = require('../services/UserService');
 class UserController {
   
   async getAllUsers(req, res) {
-      try {
-          const users = await UserService.getAllUsers();
-          res.json(users);
-      } catch (err) {
-          console.error(err);
-          res.status(500).send('Internal Server Error - controller');
-      }
+    try {
+      const users = await UserService.getAllUsers();
+      res.json(users);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error - controller');
+    }
   }
 
   async getUserById(req, res) {
-      try {
-        const id = req.params.id;
-        const user = await UserService.getUserById(id);
-        res.json(user);
-      } catch (err) {
-        console.error(err);
-        res.status(500).send('Internal Server Error - controller');
-      }
+    try {
+      const id = req.params.id;
+      const user = await UserService.getUserById(id);
+      res.json(user);
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error - controller');
     }
+  }
 
   async createUser(req, res) {
     try {
@@ -44,11 +44,22 @@ class UserController {
   }
 
   async deleteUser(req, res) {
-    try{
+    try {
       const id = req.params.id;
       const result = await UserService.deleteUser(id);
       res.json(result);
-    }catch (err) {
+    } catch (err) {
+      console.error(err);
+      res.status(500).send('Internal Server Error - controller');
+    }
+  }
+
+  async loginUser(req, res) {
+    try {
+      const { email, password } = req.body;
+      const { token, user } = await UserService.login(email, password);
+      res.json({ token, user });
+    } catch (err) {
       console.error(err);
       res.status(500).send('Internal Server Error - controller');
     }

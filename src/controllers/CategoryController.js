@@ -24,14 +24,16 @@ class CategoryController {
     }
 
   async createCategory(req, res) {
-    try {
-      const result = await CategoryService.createCategory(req.body);
-      res.json(result);
-    } catch (err) {
-      console.error(err);
-      res.status(500).send('Internal Server Error - controller');
-    }
+      try {
+          const userRole = req.user.role; 
+          const result = await CategoryService.createCategory(req.body, userRole);
+          res.json(result);
+      } catch (err) {
+          console.error(err);
+          res.status(500).send('Internal Server Error - controller');
+      }
   }
+  
 
   async updateCategory(req, res) {
     try {
