@@ -1,9 +1,9 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../database/db-connection');
 
-class AboutSection extends Model {}
+class AboutUs extends Model {}
 
-AboutSection.init(
+AboutUs.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -16,20 +16,20 @@ AboutSection.init(
       allowNull: false,
     },
     description: {
-      type: DataTypes.TEXT, // Changed to TEXT to allow for longer descriptions
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     icon: {
-      type: DataTypes.STRING, // Can be a path to the image or a class name for a font icon
+      type: DataTypes.STRING,
       allowNull: true,
     },
   },
   {
     sequelize,
     modelName: 'AboutUs',
-    tableName: 'aboutUs', 
+    tableName: 'aboutUs', // Adjust the table name as needed
     timestamps: false,
   }
 );
 
-module.exports = AboutSection;
+module.exports = AboutUs;
