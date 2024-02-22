@@ -59,24 +59,24 @@ class UserService {
       if (!user) {
         throw new Error('User not found');
       }
-
-
+  
       const isPasswordValid = await bcrypt.compare(password, user.password);
       if (!isPasswordValid) {
         throw new Error('Invalid password');
       }
-
+  
       const tokenPayload = { userId: user.id, email: user.email, name: user.name, role: user.role };
       console.log('Token payload:', tokenPayload);
-
+  
       const token = jwt.sign(tokenPayload, "my-secret-key", { expiresIn: '1h' });
-
-      return { token };
+  
+      return { token, userRole: user.role };
     } catch (error) {
       console.error('Login failed:', error.message);
       throw error;
     }
   }
+  
 }
   
 module.exports = new UserService();

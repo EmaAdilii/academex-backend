@@ -57,12 +57,12 @@ class UserController {
   async loginUser(req, res) {
     try {
       const { email, password } = req.body;
-      const { token, user } = await UserService.login(email, password);
-      res.json({ token, user });
+      const { token, userRole } = await UserService.login(email, password);
+      res.json({ token, userRole });
     } catch (err) {
       console.error(err);
       res.status(500).send('Internal Server Error - controller');
-    }
+    }  
   }
 }
 
