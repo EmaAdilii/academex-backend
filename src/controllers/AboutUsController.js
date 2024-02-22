@@ -1,57 +1,56 @@
 const AboutUsService = require('../services/AboutUsService');
 
-
 class AboutUsController {
 
-  async getAllAboutUsEntries(req, res) {
+  async getAllAboutUs(req, res) {
     try {
-      const aboutUsEntries = await AboutUsService.getAllAboutUsEntries();
-      res.json(aboutUsEntries);
+      const aboutUs = await AboutUsService.getAllAboutUs();
+      res.json(aboutUs);
     } catch (err) {
       console.error(err);
-      res.status(500).send('Internal Server Error - GET ALL ABOUT US ENTRIES controller');
+      res.status(500).send('Internal Server Error - GET ALL ABOUT US controller');
     }
   }
 
-  async getAboutUsEntryById(req, res) {
+  async getAboutUsById(req, res) {
     try {
       const id = req.params.id;
-      const aboutUsEntry = await AboutUsService.getAboutUsEntryById(id);
-      res.json(aboutUsEntry);
+      const aboutUs = await AboutUsService.getAboutUsById(id);
+      res.json(aboutUs);
     } catch (err) {
       console.error(err);
-      res.status(500).send('Internal Server Error - GET ABOUT US ENTRY BY ID controller');
+      res.status(500).send('Internal Server Error - GET ABOUT US BY ID controller');
     }
   }
 
-  async createAboutUsEntry(req, res) {
+  async createAboutUs(req, res) {
     try {
-      const result = await AboutUsService.createAboutUsEntry(req.body);
+      const result = await AboutUsService.createAboutUs(req.body);
       res.json(result);
     } catch (err) {
       console.error(err);
-      res.status(500).send('Internal Server Error - CREATE ABOUT US ENTRY controller');
+      res.status(500).send('Internal Server Error - CREATE ABOUT US controller');
     }
   }
 
-  async updateAboutUsEntry(req, res) {
+  async updateAboutUs(req, res) {
     try {
-      const result = await AboutUsService.updateAboutUsEntry(req.body);
+      const result = await AboutUsService.updateAboutUs(req.body);
       res.json(result);
     } catch (err) {
       console.error(err);
-      res.status(500).send('Internal Server Error - UPDATE ABOUT US ENTRY controller');
+      res.status(500).send('Internal Server Error - UPDATE ABOUT US controller');
     }
   }
 
-  async deleteAboutUsEntry(req, res) {
+  async deleteAboutUs(req, res) {
     try {
       const id = req.params.id;
-      const result = await AboutUsService.deleteAboutUsEntry(id);
+      const result = await AboutUsService.deleteAboutUs(id);
       res.json(result);
     } catch (err) {
       console.error(err);
-      res.status(500).send('Internal Server Error - DELETE ABOUT US ENTRY controller');
+      res.status(500).send('Internal Server Error - DELETE ABOUT US controller');
     }
   }
 }

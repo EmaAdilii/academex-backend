@@ -1,54 +1,54 @@
-const AboutUsModel = require('./AboutUsService'); // Adjust the path as necessary
+const AboutUs = require('../models/aboutUsModel');
 
-
-class AboutusService {
-  async getAllSections() {
-    return await AboutUsModel.findAll();
+class AboutUsService {
+  async getAllAboutUs() {
+    return await AboutUs.findAll();
   }
 
-  async getSectionById(id) {
-    return await AboutUsModel.findByPk(id);
+  async getAboutUsById(id) {
+    return await AboutUs.findByPk(id);
   }
 
-  async createSection(sectionData) {
+  async createAboutUs(aboutUsData) {
     try {
-      const newSection = await AboutUsModel.create(sectionData);
-      return newSection;
+      const newAboutUs = await AboutUs.create(aboutUsData);
+      return newAboutUs;
     } catch (error) {
-      console.error('Error creating section:', error);
+      console.error('Error creating AboutUs:', error);
       throw error;
     }
   }
 
-  async updateSection(updateSectionData) {
+  async updateAboutUs(updateAboutUsData) {
     try {
-      const section = await AboutUsModel.findByPk(updateSectionData.id);
-      if (!section) {
-        return 'Section not found';
+      const aboutUs = await AboutUs.findByPk(updateAboutUsData.aboutUsId);
+      if (!aboutUs) {
+        return 'AboutUs not found';
       }
 
-      await section.update(updateSectionData);
-      return section;
+      await aboutUs.update(updateAboutUsData);
+
+      return aboutUs;
     } catch (error) {
-      console.error('Error updating section:', error);
+      console.error('Error updating AboutUs:', error);
       throw error;
     }
   }
 
-  async deleteSection(id) {
+  async deleteAboutUs(id) {
     try {
-      const section = await AboutUsModel.findByPk(id);
-      if (!section) {
-        return 'Section not found';
+      const aboutUs = await AboutUs.findByPk(id);
+      if (!aboutUs) {
+        return 'AboutUs  not found';
       }
 
-      await section.destroy();
-      return 'Section deleted successfully!';
+      await aboutUs.destroy();
+      return 'AboutUs deleted successfully!';
     } catch (error) {
-      console.error('Error deleting section:', error);
+      console.error('Error deleting AboutUs:', error);
       throw error;
     }
   }
 }
 
-module.exports = new AboutusService();
+module.exports = new AboutUsService();
