@@ -6,6 +6,7 @@ const CategoryController = require('../controllers/CategoryController');
 const CourseController = require('../controllers/CourseController');
 const Controller = require('../controllers/Controller');
 const NewsController = require('../controllers/NewsController'); 
+const UserCourseController = require('../controllers/UserCourseController');
 
 const validate = require('../validators/validator');
 const {createUserValidator, updateUserValidator} = require('../validators/userValidator');
@@ -28,13 +29,6 @@ router.post('/users/create', createUserValidator(), validate, UserController.cre
 router.patch('/users/update', updateUserValidator(), validate, UserController.updateUser);
 router.delete('/users/delete/:id', UserController.deleteUser);
 
-// Teacher routes
-router.get('/teachers', TeacherController.getAllTeachers);
-router.get('/teachers/:id', TeacherController.getTeacherById);
-router.post('/teachers/create', createTeacherValidator(), validate, TeacherController.createTeacher);
-router.patch('/teachers/update', updateTeacherValidator(), validate, TeacherController.updateTeacher);
-router.delete('/teachers/delete/:id', TeacherController.deleteTeacher);
-
 // Category routes
 router.get('/categories', CategoryController.getAllCategories);
 router.get('/categories/:id', CategoryController.getCategoryById);
@@ -48,6 +42,15 @@ router.get('/courses/:id', [checkAuth], CourseController.getCourseById);
 router.post('/courses/create', [checkAdmin], createCourseValidator(), validate, CourseController.createCourse);
 router.patch('/courses/update', updateCourseValidator(), validate, CourseController.updateCourse);
 router.delete('/courses/delete/:id', CourseController.deleteCourse);
+
+// UserCourse routes
+router.get('/user-courses/:userId', UserCourseController.getAllUserCourses);
+// router.get('/user-courses/:id', UserCourseController.getUserCourseById);
+router.post('/user-courses/create', UserCourseController.createUserCourse);
+router.patch('/user-courses/update/:id', UserCourseController.updateUserCourse);
+router.delete('/user-courses/delete/:id', UserCourseController.deleteUserCourse);
+// router.post('/:userId/courses/', UserCourseController.enrollUserInCourse);
+
 
 // News routes
 router.get('/news', NewsController.getAllNews);

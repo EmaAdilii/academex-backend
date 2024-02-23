@@ -23,22 +23,22 @@ User.init(
     email: {
         type: DataTypes.STRING,
         allowNull: false,
-        unique: true, // Make sure email is unique
+        unique: true,
         validate: {
-            isEmail: true, // Enforce email format validation
+            isEmail: true, 
         },
     },
     password: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
-            len: [8, 255], // Enforce a minimum password length
+            len: [8, 255], 
         },
     },
     role: {
-        type: DataTypes.ENUM('user', 'admin'), // Adding role field as ENUM type
+        type: DataTypes.ENUM('user', 'admin'),
         allowNull: false,
-        defaultValue: 'user', // Default role is user
+        defaultValue: 'user', 
     },
 }, {
     sequelize,

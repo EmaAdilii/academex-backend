@@ -1,14 +1,26 @@
-const User = require('../models/userModel');
-const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const bcrypt = require('bcrypt');
+const User = require('../models/userModel');
 
 class UserService {
   async getAllUsers() {
-    return await User.findAll();
+    try {
+      const users = await User.findAll();
+      return users;
+    } catch (error) {
+      console.error('Error fetching all users:', error);
+      throw new Error('Error fetching all users');
+    }
   }
 
   async getUserById(id) {
-    return await User.findByPk(id);
+    try {
+      const user = await User.findByPk(id);
+      return user;
+    } catch (error) {
+      console.error('Error fetching user by ID:', error);
+      throw new Error('Error fetching user by ID');
+    }
   }
 
   async createUser(userData) {
@@ -18,7 +30,7 @@ class UserService {
       return newUser;
     } catch (error) {
       console.error('Error creating user:', error);
-      throw error;
+      throw new Error('Error creating user');
     }
   }
 
@@ -26,7 +38,7 @@ class UserService {
     try {
       const user = await User.findByPk(updateUserData.id);
       if (!user) {
-        return 'User not found';
+        throw new Error('User not found');
       }
   
       await user.update(updateUserData);
@@ -34,7 +46,7 @@ class UserService {
       return user;
     } catch (error) {
       console.error('Error updating user:', error);
-      throw error;
+      throw new Error('Error updating user');
     }
   }
   
@@ -42,14 +54,14 @@ class UserService {
     try {
       const user = await User.findByPk(id);
       if (!user) {
-        return 'User not found';
+        throw new Error('User not found');
       }
 
       await user.destroy();
       return 'User deleted successfully!';
     } catch (error) {
       console.error('Error deleting user:', error);
-      throw error;
+      throw new Error('Error deleting user');
     }
   }
 
@@ -65,18 +77,15 @@ class UserService {
         throw new Error('Invalid password');
       }
   
-      const tokenPayload = { userId: user.id, email: user.email, name: user.name, role: user.role };
-      console.log('Token payload:', tokenPayload);
+      const tokenPayload = { userId: user.id, email: user.email, role: user.role };
+      const token = jwt.sign(tokenPayload, process.env.APP_SECRET, { expiresIn: '1h' });
   
-      const token = jwt.sign(tokenPayload, "my-secret-key", { expiresIn: '1h' });
-  
-      return { token, userRole: user.role };
+      return { token, userRole: user.role, userId: user.id };
     } catch (error) {
       console.error('Login failed:', error.message);
-      throw error;
+      throw new Error('Login failed');
     }
   }
-  
 }
-  
+
 module.exports = new UserService();
