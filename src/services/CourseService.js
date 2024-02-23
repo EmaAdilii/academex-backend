@@ -1,15 +1,16 @@
 const Course = require('../models/courseModel');
+const Category = require('../models/categoryModel'); 
 
 class CourseService {
   async getAllCourses() {
     return await Course.findAll({
-      // include: ['teacher', 'category'],
+      include: [{ model: Category, as: 'category' }], 
     });
   }
 
   async getCourseById(id) {
     return await Course.findByPk(id, {
-      // include: ['teacher', 'category'],
+      include: [{ model: Category, as: 'category' }], 
     });
   }
 
