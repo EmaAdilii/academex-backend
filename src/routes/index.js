@@ -5,16 +5,11 @@ const TeacherController = require('../controllers/TeacherController');
 const CategoryController = require('../controllers/CategoryController');
 const CourseController = require('../controllers/CourseController');
 const Controller = require('../controllers/Controller');
-<<<<<<< HEAD
 const NewsController = require('../controllers/NewsController');
 const BookController = require('../controllers/BookController')
 const AboutUsController = require('../controllers/AboutUsController');
-
-
-
-
 const validate = require('../validators/validator');
-const studentValidator = require('../validators/studentValidator');
+const { contactFormValidator } = require('../validators/ContactValidator');
 const teacherValidator = require('../validators/teacherValidator');
 const categoryValidator = require('../validators/categoryValidator');
 const courseValidator = require('../validators/courseValidator');
@@ -22,64 +17,17 @@ const { createNewsValidator, updateNewsValidator } = require('../validators/news
 const { createBookValidator, updateBookValidator } = require('../validators/bookValidator');
 const { createAboutUsValidator, updateAboutUsValidator } = require('../validators/aboutUsValidator');
 
-
-
-
-=======
-const NewsController = require('../controllers/NewsController'); 
+const ContactController = require('../controllers/ContactController');
 const UserCourseController = require('../controllers/UserCourseController');
-
-const validate = require('../validators/validator');
 const {createUserValidator, updateUserValidator} = require('../validators/userValidator');
 const { createTeacherValidator, updateTeacherValidator} = require('../validators/teacherValidator');
 const {createCategoryValidator, updateCategoryValidator} = require('../validators/categoryValidator');
 const {createCourseValidator, updateCourseValidator} = require('../validators/courseValidator');
-const {createNewsValidator, updateNewsValidator} = require('../validators/newsValidator');
 const { checkAuth } = require('../middlewares/checkAuth');
 const checkAdmin = require('../middlewares/checkAdmin');
->>>>>>> master
 
 console.log(checkAuth)
 
-<<<<<<< HEAD
-const createStudentValidator = studentValidator.createStudentValidator;
-const updateStudentValidator = studentValidator.updateStudentValidator;
-const createTeacherValidator = teacherValidator.createTeacherValidator;
-const updateTeacherValidator = teacherValidator.updateTeacherValidator;
-const createCategoryValidator = categoryValidator.createCategoryValidator;
-const updateCategoryValidator = categoryValidator.updateCategoryValidator;
-const createCourseValidator = courseValidator.createCourseValidator;
-const updateCourseValidator = courseValidator.updateCourseValidator;
-
-
-
-// router.get('/', (req, res) => {
-//     res.send('Welcome to Academex!');
-// });
-
-
-//All data route
-router.get('/allData', Controller.getAllData);
-
-
-//Student routes
-router.get('/students', StudentController.getAllStudents);
-router.get('/students/:id', StudentController.getStudentById);
-router.post('/students/create', createStudentValidator(), validate, StudentController.createStudent);
-router.patch('/students/update', updateStudentValidator(), validate, StudentController.updateStudent);
-router.delete('/students/delete/:id', StudentController.deleteStudent);
-
-
-//Teacher routes
-router.get('/teachers', TeacherController.getAllTeachers);
-router.get('/teachers/:id', TeacherController.getTeacherById);
-router.post('/teachers/create', createTeacherValidator(), validate, TeacherController.createTeacher);
-router.patch('/teachers/update', updateTeacherValidator(), validate, TeacherController.updateTeacher);
-router.delete('/teachers/delete/:id', TeacherController.deleteTeacher);
-
-
-//Category routes
-=======
 // All data route
 router.get('/allData', Controller.getAllData);
 
@@ -91,27 +39,19 @@ router.patch('/users/update', updateUserValidator(), validate, UserController.up
 router.delete('/users/delete/:id', UserController.deleteUser);
 
 // Category routes
->>>>>>> master
 router.get('/categories', CategoryController.getAllCategories);
 router.get('/categories/:id', CategoryController.getCategoryById);
 router.post('/categories/create', [checkAuth, checkAdmin], createCategoryValidator(), validate, CategoryController.createCategory);
 router.patch('/categories/update', updateCategoryValidator(), validate, CategoryController.updateCategory);
 router.delete('/categories/delete/:id', CategoryController.deleteCategory);
 
-<<<<<<< HEAD
-
-//Courses routes
-=======
 // Courses routes
->>>>>>> master
 router.get('/courses', CourseController.getAllCourses);
 router.get('/courses/:id', [checkAuth], CourseController.getCourseById);
 router.post('/courses/create', [checkAdmin], createCourseValidator(), validate, CourseController.createCourse);
 router.patch('/courses/update', updateCourseValidator(), validate, CourseController.updateCourse);
 router.delete('/courses/delete/:id', CourseController.deleteCourse);
 
-<<<<<<< HEAD
-=======
 // UserCourse routes
 router.get('/user-courses/:userId', UserCourseController.getAllUserCourses);
 // router.get('/user-courses/:id', UserCourseController.getUserCourseById);
@@ -120,7 +60,6 @@ router.patch('/user-courses/update/:id', UserCourseController.updateUserCourse);
 router.delete('/user-courses/delete/:id', UserCourseController.deleteUserCourse);
 // router.post('/:userId/courses/', UserCourseController.enrollUserInCourse);
 
->>>>>>> master
 
 // News routes
 router.get('/news', NewsController.getAllNews);
@@ -147,7 +86,13 @@ router.post('/aboutUs/create', createAboutUsValidator(), validate, AboutUsContro
 router.patch('/aboutUs/update', updateAboutUsValidator(), validate, AboutUsController.updateAboutUs);
 router.delete('/aboutUs/delete/:id', AboutUsController.deleteAboutUs);
 
-
+// Contact Route
+// router.post('/contact', [contactFormValidator], ContactController.submitContactForm);
+router.get('/contact', ContactController.getAllContacts);
+router.get('/contact/:id', ContactController.getContactById);
+router.post('/contact/create', ContactController.createContact);
+router.patch('/contact/update', ContactController.updateContact);
+router.delete('/contact/delete/:id', ContactController.deleteContact);
 
 module.exports = router;
 
