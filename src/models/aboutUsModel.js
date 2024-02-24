@@ -1,9 +1,9 @@
 const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../database/db-connection');
 
-class Book extends Model {}
+class AboutUs extends Model {}
 
-Book.init(
+AboutUs.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -15,25 +15,21 @@ Book.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    image: {
-      type: DataTypes.STRING,
-      allowNull: true,
-    },
-    author: {
-      type: DataTypes.STRING,
+    description: {
+      type: DataTypes.TEXT,
       allowNull: false,
     },
-    link: {
-      type: DataTypes.STRING, 
-      allowNull: true, 
+    icon: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
   },
   {
     sequelize,
-    modelName: 'Book',
-    tableName: 'books',
+    modelName: 'AboutUs',
+    tableName: 'aboutUs', // Adjust the table name as needed
     timestamps: false,
   }
 );
 
-module.exports = Book;
+module.exports = AboutUs;
