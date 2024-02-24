@@ -1,6 +1,5 @@
 const CourseService = require('../services/CourseService');
 const UserService = require('../services/UserService');
-const TeacherService = require('../services/TeacherService');
 const CategoryService = require('../services/CategoryService');
 const NewsService = require('../services/NewsService');
 
