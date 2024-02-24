@@ -9,15 +9,19 @@ class CategoryService {
     return await Category.findByPk(id);
   }
 
-  async createCategory(categoryData) {
+  async createCategory(categoryData, userRole) {
     try {
-      const newCategory = await Category.create(categoryData);
-      return newCategory;
+        if (userRole !== 'admin') {
+            throw new Error('User does not have admin privileges to create a category.');
+        }
+
+        const newCategory = await Category.create(categoryData);
+        return newCategory;
     } catch (error) {
-      console.error('Error creating category:', error);
-      throw error;
+        console.error('Error creating category:', error);
+        throw error;
     }
-  }
+}
 
   async updateCategory(updateCategoryData) {
     try {
