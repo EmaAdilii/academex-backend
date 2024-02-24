@@ -8,6 +8,7 @@ const NewsController = require('../controllers/NewsController');
 const BookController = require('../controllers/BookController')
 const AboutUsController = require('../controllers/AboutUsController');
 const UserCourseController = require('../controllers/UserCourseController');
+
 const { checkAuth } = require('../middlewares/checkAuth');
 const checkAdmin = require('../middlewares/checkAdmin');
 
