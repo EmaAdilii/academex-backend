@@ -33,21 +33,33 @@ class UserCourseService {
 
     async getUserCourseById(id) {
         try {
-            const userCourse = await UserCourse.findByPk(id);
+            const userCourse = await UserCourse.findByPk(id, {
+                include: [
+                    { model: Course, as: 'course' }, 
+                    { model: User, as: 'user' }
+                ]
+            });
             return userCourse;
         } catch (error) {
             throw error;
         }
     }
+    
 
     async createUserCourse(data) {
         try {
             const userCourse = await UserCourse.create(data);
             return userCourse;
         } catch (error) {
-            throw error;
+            // Check if the error is related to database constraints
+            if (error.name === 'SequelizeForeignKeyConstraintError') {
+                throw new Error('User or course not found. Unable to create user course.');
+            } else {
+                throw error; // Throw any other errors
+            }
         }
     }
+    
 
     async updateUserCourse(id, data) {
         try {
@@ -55,12 +67,14 @@ class UserCourseService {
             if (userCourse) {
                 await userCourse.update(data);
                 return userCourse;
+            } else {
+                throw new Error('User course not found - service');
             }
-            return null;
         } catch (error) {
             throw error;
         }
     }
+    
 
     async deleteUserCourse(id) {
         try {

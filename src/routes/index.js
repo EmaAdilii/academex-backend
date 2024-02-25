@@ -50,15 +50,13 @@ router.post('/courses/create', [checkAdmin], createCourseValidator(), validate, 
 router.patch('/courses/update', updateCourseValidator(), validate, CourseController.updateCourse);
 router.delete('/courses/delete/:id', CourseController.deleteCourse);
 
-// UserCourse routes
-router.get('/users/:userId/courses', UserCourseController.getAllUserCoursesByUserId.bind(UserCourseController));
-router.get('/user-courses/:userCourseId', UserCourseController.getUserCourseById);
+// User - Course routes
+router.get('/user-courses', UserCourseController.getAllUserCourses);
+router.get('/users/:userId/courses', UserCourseController.getAllUserCoursesByUserId);
+router.get('/user-courses/:id', UserCourseController.getUserCourseById);
 router.post('/users/:userId/courses/create', UserCourseController.createUserCourse);
-router.patch('/user-courses/:userCourseId/update', UserCourseController.updateUserCourse);
-router.delete('/user-courses/:userCourseId/delete', UserCourseController.deleteUserCourse);
-
-// router.post('/:userId/courses/', UserCourseController.enrollUserInCourse);
-
+router.patch('/user-courses/:id/update', UserCourseController.updateUserCourse);
+router.delete('/user-courses/:id/delete', UserCourseController.deleteUserCourse);
 
 // News routes
 router.get('/news', NewsController.getAllNews);
