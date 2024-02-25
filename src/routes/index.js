@@ -51,11 +51,12 @@ router.patch('/courses/update', updateCourseValidator(), validate, CourseControl
 router.delete('/courses/delete/:id', CourseController.deleteCourse);
 
 // UserCourse routes
-router.get('/user-courses/:userId', UserCourseController.getAllUserCourses);
-router.get('/user-courses/:id', UserCourseController.getUserCourseById);
-router.post('/user-courses/create', UserCourseController.createUserCourse);
-router.patch('/user-courses/update/:id', UserCourseController.updateUserCourse);
-router.delete('/user-courses/delete/:id', UserCourseController.deleteUserCourse);
+router.get('/users/:userId/courses', UserCourseController.getAllUserCoursesByUserId.bind(UserCourseController));
+router.get('/user-courses/:userCourseId', UserCourseController.getUserCourseById);
+router.post('/users/:userId/courses/create', UserCourseController.createUserCourse);
+router.patch('/user-courses/:userCourseId/update', UserCourseController.updateUserCourse);
+router.delete('/user-courses/:userCourseId/delete', UserCourseController.deleteUserCourse);
+
 // router.post('/:userId/courses/', UserCourseController.enrollUserInCourse);
 
 

@@ -1,17 +1,25 @@
 const userCourseService = require('../services/UserCourseService');
+const UserCourse = require('../models/userCourseModel');
+
+
+
 
 class UserCourseController {
-    async getAllUserCourses(req, res) {
+
+    async getAllUserCoursesByUserId(req, res) {
+        const userId = req.params.userId;
         try {
-            // Extract the userId from the request parameters
-            const userId = req.params.userId;
-            const userCourses = await userCourseService.getAllUserCoursesByUserId(userId);
-            res.status(200).json(userCourses);
+            const userCoursesData = await userCourseService.getAllUserCoursesByUserId(userId);
+            res.status(200).json(userCoursesData); 
+            
         } catch (error) {
             console.error('Error fetching user courses:', error);
             res.status(500).send('Error fetching user courses');
         }
     }
+
+
+    
     
     async getUserCourseById(req, res) {
         const id = req.params.id;
@@ -69,11 +77,11 @@ class UserCourseController {
             res.status(500).send('Error deleting user course');
         }
     }
+
     async enrollUserInCourse(req, res) {
         try {
             const { userId, courseId } = req.params;
 
-            // Check if the user is already enrolled in the course
             const existingEnrollment = await UserCourse.findOne({
                 where: {
                     userId: userId,
@@ -85,7 +93,6 @@ class UserCourseController {
                 return res.status(400).json({ message: 'User is already enrolled in the course' });
             }
 
-            // Create a new enrollment
             const newEnrollment = await UserCourse.create({
                 userId: userId,
                 courseId: courseId

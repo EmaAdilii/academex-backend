@@ -1,4 +1,7 @@
 const UserCourse = require('../models/userCourseModel');
+const Course = require('../models/courseModel');
+const User = require('../models/userModel');
+
 
 class UserCourseService {
     async getAllUserCourses() {
@@ -12,8 +15,17 @@ class UserCourseService {
 
     async getAllUserCoursesByUserId(userId) {
         try {
-            const userCourses = await UserCourse.findAll({ where: { userId: userId } });
-            return userCourses;
+            const userCourses = await UserCourse.findAll({ 
+                where: { userId: userId },
+                include: [
+                    { model: Course, as: 'course' }, 
+                    { model: User, as: 'user' }
+                ]
+            });
+            // Extract and return the courses and users from the userCourses array
+            const courses = userCourses.map(userCourse => userCourse.course);
+            const users = userCourses.map(userCourses => userCourses.user)
+            return { courses, users };
         } catch (error) {
             throw error;
         }

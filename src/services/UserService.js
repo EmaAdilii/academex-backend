@@ -86,6 +86,8 @@ class UserService {
       throw new Error('Login failed');
     }
   }
+
+  
 }
 
 module.exports = new UserService();
