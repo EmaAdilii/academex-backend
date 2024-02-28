@@ -56,8 +56,8 @@ router.get('/user-courses', UserCourseController.getAllUserCourses);
 router.get('/users/:userId/courses', UserCourseController.getAllUserCoursesByUserId);
 router.get('/user-courses/:id', UserCourseController.getUserCourseById);
 router.post('/users/:userId/courses/create', UserCourseController.createUserCourse);
-router.patch('/user-courses/:id/update', UserCourseController.updateUserCourse);
-router.delete('/user-courses/:id/delete', UserCourseController.deleteUserCourse);
+router.patch('/user-courses/:id/update', [checkAuth, checkAdmin], UserCourseController.updateUserCourse);
+router.delete('/user-courses/:id/delete', [checkAuth, checkAdmin], UserCourseController.deleteUserCourse);
 
 // News routes
 router.get('/news', NewsController.getAllNews);
