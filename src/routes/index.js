@@ -11,9 +11,7 @@ const AboutUsController = require('../controllers/AboutUsController');
 
 const validate = require('../validators/validator');
 const { contactFormValidator } = require('../validators/ContactValidator');
-const teacherValidator = require('../validators/teacherValidator');
-const categoryValidator = require('../validators/categoryValidator');
-const courseValidator = require('../validators/courseValidator');
+
 const { createNewsValidator, updateNewsValidator } = require('../validators/newsValidator');
 const { createBookValidator, updateBookValidator } = require('../validators/bookValidator');
 const { createAboutUsValidator, updateAboutUsValidator } = require('../validators/aboutUsValidator');
@@ -21,7 +19,6 @@ const { createAboutUsValidator, updateAboutUsValidator } = require('../validator
 const ContactController = require('../controllers/ContactController');
 const UserCourseController = require('../controllers/UserCourseController');
 const { createUserValidator, updateUserValidator } = require('../validators/userValidator');
-const { createTeacherValidator, updateTeacherValidator } = require('../validators/teacherValidator');
 const { createCategoryValidator, updateCategoryValidator } = require('../validators/categoryValidator');
 const { createCourseValidator, updateCourseValidator } = require('../validators/courseValidator');
 const { checkAuth } = require('../middlewares/checkAuth');
@@ -48,7 +45,7 @@ router.delete('/categories/delete/:id', CategoryController.deleteCategory);
 
 // Courses routes
 router.get('/courses', CourseController.getAllCourses);
-router.get('/courses/:id', CourseController.getCourseById);
+router.get('/courses/:id',  [checkAuth], CourseController.getCourseById);
 router.post('/courses/create', createCourseValidator(), validate, CourseController.createCourse);
 router.patch('/courses/update/:id', updateCourseValidator(), validate, CourseController.updateCourse);
 router.delete('/courses/delete/:id', CourseController.deleteCourse);
