@@ -46,7 +46,7 @@ router.delete('/categories/delete/:id', CategoryController.deleteCategory);
 // Courses routes
 router.get('/courses', CourseController.getAllCourses);
 router.get('/courses/:id', [checkAuth], CourseController.getCourseById);
-router.post('/courses/create', [checkAdmin], createCourseValidator(), validate, CourseController.createCourse);
+router.post('/courses/create', [checkAuth, checkAdmin], createCourseValidator(), validate, CourseController.createCourse);
 router.patch('/courses/update', updateCourseValidator(), validate, CourseController.updateCourse);
 router.delete('/courses/delete/:id', CourseController.deleteCourse);
 
