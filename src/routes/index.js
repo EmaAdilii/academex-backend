@@ -7,25 +7,22 @@ const Controller = require('../controllers/Controller');
 const NewsController = require('../controllers/NewsController');
 const BookController = require('../controllers/BookController')
 const AboutUsController = require('../controllers/AboutUsController');
-const UserCourseController = require('../controllers/UserCourseController');
-const { checkAuth } = require('../middlewares/checkAuth');
-const checkAdmin = require('../middlewares/checkAdmin');
-
-
 const validate = require('../validators/validator');
-const {createUserValidator, updateUserValidator} = require('../validators/userValidator');
-const {createCategoryValidator, updateCategoryValidator} = require('../validators/categoryValidator');
-const {createCourseValidator, updateCourseValidator} = require('../validators/courseValidator');
-const {createNewsValidator, updateNewsValidator} = require('../validators/newsValidator');
+const { createNewsValidator, updateNewsValidator } = require('../validators/newsValidator');
 const { createBookValidator, updateBookValidator } = require('../validators/bookValidator');
 const { createAboutUsValidator, updateAboutUsValidator } = require('../validators/aboutUsValidator');
 
+const ContactController = require('../controllers/ContactController');
+const UserCourseController = require('../controllers/UserCourseController');
+const {createUserValidator, updateUserValidator} = require('../validators/userValidator');
+const {createCategoryValidator, updateCategoryValidator} = require('../validators/categoryValidator');
+const {createCourseValidator, updateCourseValidator} = require('../validators/courseValidator');
+const { checkAuth } = require('../middlewares/checkAuth');
+const checkAdmin = require('../middlewares/checkAdmin');
 
 console.log(checkAuth)
-console.log(checkAdmin)
 
-
-//All data route
+// All data route
 router.get('/allData', Controller.getAllData);
 
 // User routes
@@ -83,7 +80,13 @@ router.post('/aboutUs/create', createAboutUsValidator(), validate, AboutUsContro
 router.patch('/aboutUs/update', updateAboutUsValidator(), validate, AboutUsController.updateAboutUs);
 router.delete('/aboutUs/delete/:id', AboutUsController.deleteAboutUs);
 
-
+// Contact Route
+// router.post('/contact', [contactFormValidator], ContactController.submitContactForm);
+router.get('/contact', ContactController.getAllContacts);
+router.get('/contact/:id', ContactController.getContactById);
+router.post('/contact/create', ContactController.createContact);
+router.patch('/contact/update', ContactController.updateContact);
+router.delete('/contact/delete/:id', ContactController.deleteContact);
 
 module.exports = router;
 
