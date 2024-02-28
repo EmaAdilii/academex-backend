@@ -1,16 +1,16 @@
 const Course = require('../models/courseModel');
-const Category = require('../models/categoryModel'); 
+const Category = require('../models/categoryModel');
 
 class CourseService {
   async getAllCourses() {
     return await Course.findAll({
-      include: [{ model: Category, as: 'category' }], 
+      include: [{ model: Category, as: 'category' }],
     });
   }
 
   async getCourseById(id) {
     return await Course.findByPk(id, {
-      include: [{ model: Category, as: 'category' }], 
+      include: [{ model: Category, as: 'category' }],
     });
   }
 
@@ -26,7 +26,7 @@ class CourseService {
 
   async updateCourse(updateCourseData) {
     try {
-      const course = await Course.findByPk(updateCourseData.courseId);
+      const course = await Course.findByPk(updateCourseData.id);
       if (!course) {
         return 'Course not found';
       }

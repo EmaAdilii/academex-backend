@@ -3,59 +3,25 @@ const { check } = expressValidator;
 
 const createCategoryValidator = () => {
   return [
-    check('title')
+    check('name')
       .trim()
       .not()
       .isEmpty()
-      .withMessage('Please provide a title')
-      .isLength({ max: 15 })
-      .withMessage('Title should be max 15 characters'),
-
-    check('cover')
-      .trim()
-      .not()
-      .isEmpty()
-      .withMessage('Please provide a cover image URL'),
-
-    // check('description')
-    //   .trim()
-    //   .not()
-    //   .isEmpty()
-    //   .withMessage('Please provide a description')
-    //   .isLength({ max: 300 })
-    //   .withMessage('Description should be max 300 characters'),
+      .withMessage('Please provide a name for the category')
+      .isLength({ max: 60 })
+      .withMessage('Category name should be max 60 characters'),
   ];
 };
 
 const updateCategoryValidator = () => {
   return [
-    check('id')
+    check('name')
       .trim()
       .not()
       .isEmpty()
-      .withMessage('Please provide a category Id'),
-
-    check('title')
-      .trim()
-      .not()
-      .isEmpty()
-      .withMessage('Please provide a title')
-      .isLength({ max: 15 })
-      .withMessage('Title should be max 15 characters'),
-
-    check('cover')
-      .trim()
-      .not()
-      .isEmpty()
-      .withMessage('Please provide a cover image URL'),
-
-    // check('description')
-    // //   .trim()
-    //   .not()
-    //   .isEmpty()
-    //   .withMessage('Please provide a description')
-    //   .isLength({ max: 300 })
-    //   .withMessage('Description should be max 300 characters'),
+      .withMessage('Please provide a name for the category')
+      .isLength({ max: 60 })
+      .withMessage('Category name should be max 60 characters'),
   ];
 };
 
