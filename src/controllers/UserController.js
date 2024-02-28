@@ -27,8 +27,8 @@ class UserController {
       const result = await UserService.createUser(req.body);
       res.json(result);
     } catch (error) {
-      console.error('Error creating user:', error.message);
-      res.status(500).json({ error: 'Error creating user' });
+      console.error('Error creating user!:', error.message);
+      res.status(500).json({ error: 'Error creating user!!' });
     }
   }
 
@@ -38,7 +38,7 @@ class UserController {
       res.json(result);
     } catch (error) {
       console.error('Error updating user:', error.message);
-      res.status(500).json({ error: 'Error updating user' });
+      res.status(500).json({ error: 'Error updating user!' });
     }
   }
   
