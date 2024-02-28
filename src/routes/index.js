@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/UserController');
-const TeacherController = require('../controllers/TeacherController');
 const CategoryController = require('../controllers/CategoryController');
 const CourseController = require('../controllers/CourseController');
 const Controller = require('../controllers/Controller');
@@ -19,16 +18,29 @@ const { createAboutUsValidator, updateAboutUsValidator } = require('../validator
 
 const ContactController = require('../controllers/ContactController');
 const UserCourseController = require('../controllers/UserCourseController');
+
+const { checkAuth } = require('../middlewares/checkAuth');
+const checkAdmin = require('../middlewares/checkAdmin');
+
+
+const validate = require('../validators/validator');
 const {createUserValidator, updateUserValidator} = require('../validators/userValidator');
-const { createTeacherValidator, updateTeacherValidator} = require('../validators/teacherValidator');
 const {createCategoryValidator, updateCategoryValidator} = require('../validators/categoryValidator');
 const {createCourseValidator, updateCourseValidator} = require('../validators/courseValidator');
 const { checkAuth } = require('../middlewares/checkAuth');
 const checkAdmin = require('../middlewares/checkAdmin');
+const {createNewsValidator, updateNewsValidator} = require('../validators/newsValidator');
+const { createBookValidator, updateBookValidator } = require('../validators/bookValidator');
+const { createAboutUsValidator, updateAboutUsValidator } = require('../validators/aboutUsValidator');
+
 
 console.log(checkAuth)
 
 // All data route
+console.log(checkAdmin)
+
+
+//All data route
 router.get('/allData', Controller.getAllData);
 
 // User routes
@@ -48,7 +60,7 @@ router.delete('/categories/delete/:id', CategoryController.deleteCategory);
 // Courses routes
 router.get('/courses', CourseController.getAllCourses);
 router.get('/courses/:id', [checkAuth], CourseController.getCourseById);
-router.post('/courses/create', [checkAdmin], createCourseValidator(), validate, CourseController.createCourse);
+router.post('/courses/create', [checkAuth, checkAdmin], createCourseValidator(), validate, CourseController.createCourse);
 router.patch('/courses/update', updateCourseValidator(), validate, CourseController.updateCourse);
 router.delete('/courses/delete/:id', CourseController.deleteCourse);
 
@@ -60,6 +72,13 @@ router.patch('/user-courses/update/:id', UserCourseController.updateUserCourse);
 router.delete('/user-courses/delete/:id', UserCourseController.deleteUserCourse);
 // router.post('/:userId/courses/', UserCourseController.enrollUserInCourse);
 
+// User - Course routes
+router.get('/user-courses', UserCourseController.getAllUserCourses);
+router.get('/users/:userId/courses', UserCourseController.getAllUserCoursesByUserId);
+router.get('/user-courses/:id', UserCourseController.getUserCourseById);
+router.post('/users/:userId/courses/create', UserCourseController.createUserCourse);
+router.patch('/user-courses/:id/update', UserCourseController.updateUserCourse);
+router.delete('/user-courses/:id/delete', UserCourseController.deleteUserCourse);
 
 // News routes
 router.get('/news', NewsController.getAllNews);
