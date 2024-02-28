@@ -18,10 +18,8 @@ const UserCourseController = require('../controllers/UserCourseController');
 const {createUserValidator, updateUserValidator} = require('../validators/userValidator');
 const {createCategoryValidator, updateCategoryValidator} = require('../validators/categoryValidator');
 const {createCourseValidator, updateCourseValidator} = require('../validators/courseValidator');
-const { createUserValidator, updateUserValidator } = require('../validators/userValidator');
-const { createTeacherValidator, updateTeacherValidator } = require('../validators/teacherValidator');
-const { createCategoryValidator, updateCategoryValidator } = require('../validators/categoryValidator');
-const { createCourseValidator, updateCourseValidator } = require('../validators/courseValidator');
+
+
 const { checkAuth } = require('../middlewares/checkAuth');
 const checkAdmin = require('../middlewares/checkAdmin');
 
