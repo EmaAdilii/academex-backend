@@ -26,12 +26,6 @@ const createNewsValidator = () => {
 
 const updateNewsValidator = () => {
   return [
-    check('id')
-      .trim()
-      .not()
-      .isEmpty()
-      .withMessage('Please provide a news Id'),
-
     check('title')
       .trim()
       .not()

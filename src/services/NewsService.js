@@ -21,7 +21,7 @@ class NewsService {
 
   async updateNews(updateNewsData) {
     try {
-      const news = await News.findByPk(updateNewsData.newsId);
+      const news = await News.findByPk(updateNewsData.id);
       if (!news) {
         return 'News not found';
       }

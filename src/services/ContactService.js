@@ -55,4 +55,8 @@ class ContactService {
   }
 }
 
+<<<<<<< HEAD
 module.exports = new ContactService();
+=======
+module.exports = new ContactService();
+>>>>>>> 96b3c8227fbbedb7ec38f721772dd60379709aff

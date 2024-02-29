@@ -2,7 +2,7 @@ const { DataTypes, Model } = require('sequelize');
 const sequelize = require('../database/db-connection');
 const Category = require('./categoryModel');
 
-class Course extends Model {}
+class Course extends Model { }
 
 Course.init(
   {
@@ -24,11 +24,11 @@ Course.init(
       type: DataTypes.STRING,
       allowNull: true,
     },
-    lecturer: { 
+    lecturer: {
       type: DataTypes.STRING,
       allowNull: true,
     },
-    url: { 
+    url: {
       type: DataTypes.STRING,
       allowNull: true,
     },
