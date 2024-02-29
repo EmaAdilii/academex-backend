@@ -1,24 +1,54 @@
-const { body } = require('express-validator');
+const expressValidator = require('express-validator');
+const { check } = expressValidator;
 
-const contactFormValidator = [
-    body('name')
-        .trim()
-        .notEmpty().withMessage('Name is required'),
+const createAboutUsValidator = () => {
+  return [
+    check('title')
+      .trim()
+      .not()
+      .isEmpty()
+      .withMessage('Please provide a title'),
 
-    body('email')
-        .trim()
-        .notEmpty().withMessage('Email is required')
-        .isEmail().withMessage('Invalid email address'),
+    check('description')
+      .trim()
+      .not()
+      .isEmpty()
+      .withMessage('Please provide a description'),
 
-    body('subject')
-        .trim()
-        .notEmpty().withMessage('Subject is required'),
-
-    body('message')
-        .trim()
-        .notEmpty().withMessage('Message is required'),
-];
-
-module.exports = {
-    contactFormValidator,
+    check('icon')
+      .trim()
+      .not()
+      .isEmpty()
+      .withMessage('Please provide an icon URL'),
+  ];
 };
+
+const updateAboutUsValidator = () => {
+  return [
+    check('id')
+      .trim()
+      .not()
+      .isEmpty()
+      .withMessage('Please provide an aboutUs Id'),
+
+    check('title')
+      .trim()
+      .not()
+      .isEmpty()
+      .withMessage('Please provide a title'),
+
+    check('description')
+      .trim()
+      .not()
+      .isEmpty()
+      .withMessage('Please provide a description'),
+
+    check('icon')
+      .trim()
+      .not()
+      .isEmpty()
+      .withMessage('Please provide an icon URL'),
+  ];
+};
+
+module.exports = { createAboutUsValidator, updateAboutUsValidator };

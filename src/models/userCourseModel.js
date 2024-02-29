@@ -38,7 +38,8 @@ UserCourse.init(
     }
 );
 
-UserCourse.belongsTo(User, { foreignKey: 'userId' });
-UserCourse.belongsTo(Course, { foreignKey: 'courseId' });
+
+UserCourse.belongsTo(User, { foreignKey: 'userId', as: 'user' }); 
+UserCourse.belongsTo(Course, { foreignKey: 'courseId', as: 'course' }); 
 
 module.exports = UserCourse;
