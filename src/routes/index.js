@@ -93,3 +93,4 @@ router.patch('/contact/update/:id', ContactController.updateContact);
 router.delete('/contact/delete/:id', [checkAuth, checkAdmin], ContactController.deleteContact);
 
 module.exports = router;
+
