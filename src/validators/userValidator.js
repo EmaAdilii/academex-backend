@@ -39,11 +39,11 @@ const createUserValidator = () => {
             .isLength({ max: 30, min: 8 })
             .withMessage('Password should be between 8 and 30 characters'),
 
-            check('role')
-            .trim()
-            .not()
-            .isEmpty()
-            .withMessage('Please provide a password')   
+            // check('role')
+            // .trim()
+            // .not()
+            // .isEmpty()
+            // .withMessage('Please provide a password')   
 
     ]
 }
