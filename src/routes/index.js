@@ -11,6 +11,7 @@ const AboutUsController = require('../controllers/AboutUsController');
 const ContactController = require('../controllers/ContactController');
 const UserCourseController = require('../controllers/UserCourseController');
 
+
 //Validators
 const validate = require('../validators/validator');
 const { createNewsValidator, updateNewsValidator } = require('../validators/newsValidator');
