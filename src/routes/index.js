@@ -94,8 +94,3 @@ router.delete('/contact/delete/:id', [checkAuth, checkAdmin], ContactController.
 
 module.exports = router;
 
-
-
-
-
-

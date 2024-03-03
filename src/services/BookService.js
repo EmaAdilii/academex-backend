@@ -21,7 +21,7 @@ class BookService {
 
   async updateBook(updateBookData) {
     try {
-      const book = await Book.findByPk(updateBookData.bookId);
+      const book = await Book.findByPk(updateBookData.id);
       if (!book) {
         return 'Book not found';
       }
