@@ -11,6 +11,7 @@ const AboutUsController = require('../controllers/AboutUsController');
 const ContactController = require('../controllers/ContactController');
 const UserCourseController = require('../controllers/UserCourseController');
 
+
 //Validators
 const validate = require('../validators/validator');
 const { createNewsValidator, updateNewsValidator } = require('../validators/newsValidator');
@@ -91,6 +92,9 @@ router.get('/contact/:id', ContactController.getContactById);
 router.post('/contact/create', ContactController.createContact);
 router.patch('/contact/update/:id', ContactController.updateContact);
 router.delete('/contact/delete/:id', [checkAuth, checkAdmin], ContactController.deleteContact);
+
+
+
 
 module.exports = router;
 
